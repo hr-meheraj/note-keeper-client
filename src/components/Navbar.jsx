@@ -11,9 +11,9 @@ export default function Navbar() {
     }
 
     return (
-        <div class="navbar  dark:bg-[#171c25] dark:text-white mx-auto w-[95%] rounded-md max-w-[1200px] shadow-md mt-[20px]">
+        <div class="navbar  dark:bg-[#171c25] dark:text-white mx-auto  rounded-md max-w-[1200px] shadow-md mt-[20px]">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl font-sans" style={{fontFamily: 'monospace'}}>Note keeper by Hr Meheraj </a>
+                <a class="btn btn-ghost normal-case text-[18px] font-sans" style={{fontFamily: 'monospace'}}>Note Keeper </a>
             </div>
             <div class="flex-none gap-5">
                 <input type="checkbox" class="toggle toggle-md" onClick={() => setDarkMode(!darkMode)} checked={darkMode} />

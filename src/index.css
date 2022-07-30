@@ -11,3 +11,15 @@
 html{
     font-family: 'Poppins', sans-serif;
 }
+
+.add-note-title{
+    @apply  outline-none  dark:bg-[#112233] bg-[#dbdbdb] border-none text-[18px] input font-normal  w-full input-bordered input-info w-full mt-[20px]
+}
+
+.add-note-category{
+  @apply  outline-none  dark:bg-[#112233] bg-[#dbdbdb] border-none  input font-normal  w-full input-bordered input-info w-full mt-[20px]   
+}
+
+.add-note-textarea{
+    @apply textarea textarea-info outline-none border-none w-full bg-[#dbdbdb] block mt-3 dark:bg-[#112233] dark:text-white 
+}
