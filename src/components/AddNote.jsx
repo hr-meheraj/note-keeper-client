@@ -13,13 +13,13 @@ function AddNote({ setNote, refetch }) {
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString()
         }
-        const response = await axios.post('http://localhost:5000/note', newNote);
+        const response = await axios.post('https://hr-meheraj-note-keeper.herokuapp.com/note', newNote);
         console.log(response);
-        if(response.status === 200){
+        if (response.status === 200) {
             toast.success("Wow so easy!");
             refetch();
             setNote(false);
-        }else{
+        } else {
             toast.error(response.status);
             setNote(false);
         }
@@ -34,7 +34,7 @@ function AddNote({ setNote, refetch }) {
                         <label for="addNote" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                         <input spellCheck={false} required name='title' type="text" placeholder="Add Note Title" class="add-note-title" />
                         <input spellCheck={false} name='category' type="text" placeholder="Category, for more category use comma" class="add-note-category" />
-                        <textarea  spellCheck={false} rows={30}  required name='details' class="add-note-textarea text-[16px]" placeholder="your note details" style={{ fontWeight: 300 }}></textarea>
+                        <textarea spellCheck={false} rows={30} required name='details' class="add-note-textarea text-[16px]" placeholder="your note details" style={{ fontWeight: 300 }}></textarea>
                         <button type='submit' className='w-full block btn dark:bg-green-600 dark:hover:bg-green-800  mt-[20px]'>Add Note</button>
                     </form>
                 </div>
