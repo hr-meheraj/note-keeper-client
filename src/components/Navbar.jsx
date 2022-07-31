@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import darkModer from '../handler/darkMode';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Navbar() {
-    const [darkMode, setDarkMode]  = useState(false);
+    const [darkMode, setDarkMode]  = useState(localStorage.getItem("mode") || "");
 
     if(darkMode){
         darkModer("dark");
@@ -23,6 +26,7 @@ export default function Navbar() {
                     </div>
                 </label>
             </div>
+            <ToastContainer/>
         </div>
     )
 }

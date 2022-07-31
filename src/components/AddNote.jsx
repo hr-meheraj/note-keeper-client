@@ -1,6 +1,7 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid';
-function AddNote({setNote}) {
+import axios from 'axios'
+import { toast } from 'react-toastify'
+function AddNote({ setNote, refetch }) {
     const handleAddNote = async e => {
         e.preventDefault();
         const category = e.target.category?.value;
@@ -9,21 +10,20 @@ function AddNote({setNote}) {
             title: e.target.title?.value,
             category: newCategoryArray,
             details: e.target.details.value,
-            id : uuidv4(),
-            date : new Date().toLocaleDateString(),
-            time : new Date().toLocaleTimeString()
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString()
         }
-
-        const previousStorage = JSON.parse(localStorage.getItem('all-notes'));
-        if(previousStorage){
-            localStorage.setItem('all-notes', JSON.stringify([...previousStorage, newNote]))
-            e.target.reset();
+        const response = await axios.post('http://localhost:5000/note', newNote);
+        console.log(response);
+        if(response.status === 200){
+            toast.success("Wow so easy!");
+            refetch();
+            setNote(false);
         }else{
-            localStorage.setItem('all-notes', JSON.stringify([newNote]));
-            e.target.reset();
+            toast.error(response.status);
+            setNote(false);
         }
-
-        setNote(false);
+        e.target.reset();
     }
     return (
         <>
@@ -33,9 +33,9 @@ function AddNote({setNote}) {
                     <form onSubmit={handleAddNote}>
                         <label for="addNote" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                         <input required name='title' type="text" placeholder="Add Note Title" class="add-note-title" />
-                        <input  name='category' type="text" placeholder="Category, for more category use comma" class="add-note-category" />
-                        <textarea required name='details' class="add-note-textarea" placeholder="your note details" style={{ fontWeight: 300 }}></textarea>
-                         <button  type='submit' className='w-full block btn dark:bg-green-600 dark:hover:bg-green-800  mt-[20px]'>Add Note</button>
+                        <input name='category' type="text" placeholder="Category, for more category use comma" class="add-note-category" />
+                        <textarea  rows={30}  required name='details' class="add-note-textarea" placeholder="your note details" style={{ fontWeight: 300 }}></textarea>
+                        <button type='submit' className='w-full block btn dark:bg-green-600 dark:hover:bg-green-800  mt-[20px]'>Add Note</button>
                     </form>
                 </div>
             </div>

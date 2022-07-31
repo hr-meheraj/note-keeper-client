@@ -1,21 +1,35 @@
 import React, { useState } from 'react'
 import Note from './Note';
+import DataLoading from './DataLoading';
 
-export default function AllNotes() {
+export default function AllNotes({ isLoading, error, data, refetch }) {
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(6);
-    const allNotes = JSON.parse(localStorage.getItem("all-notes"));
-    // if (allNotes) {
-    //     const totalNotes = allNotes.length;
-    //     setPage(Math.round((totalNotes / size)* size));
-    // }
+    const [pinend, setPinned] = useState([]);
+
+
+    if (isLoading) {
+        return (
+            <DataLoading />
+        )
+    }
+    if (error) {
+        console.log("inside", error);
+    }
     return (
         <>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[35px] mb-[30px]'>
                 {
-                    allNotes && allNotes?.slice(0, 6).map(note => React.memo(() => <Note note={note} key={note?.id} />))
+                    data?.filter(e => e.pinned === true)?.map(note => <Note refetch={refetch} note={note} key={note?.id} />)
+                }
+                {
+                    data?.filter(e => !e.pinned)?.map(note => <Note refetch={refetch} note={note} key={note?.id} />)
                 }
             </div>
+            {/* 
+            <h2 className='text-xl font-bold my-3 text-gray-400'>Others</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[35px] mb-[30px]'>
+            </div> */}
         </>
     )
 }
