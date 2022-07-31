@@ -22,7 +22,7 @@ html{
 }
 
 .add-note-textarea{
-    @apply textarea textarea-info outline-none border-none w-full bg-[#dbdbdb] block mt-3 dark:bg-[#112233] dark:text-white h-[180px]
+    @apply textarea text-[16px] textarea-info outline-none border-none w-full bg-[#dbdbdb] block mt-3 dark:bg-[#112233] dark:text-white h-[180px]
 }
 
 

@@ -32,9 +32,9 @@ function AddNote({ setNote, refetch }) {
                 <div class="modal-box dark:text-white  dark:bg-[#212730] relative">
                     <form onSubmit={handleAddNote}>
                         <label for="addNote" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                        <input required name='title' type="text" placeholder="Add Note Title" class="add-note-title" />
-                        <input name='category' type="text" placeholder="Category, for more category use comma" class="add-note-category" />
-                        <textarea  rows={30}  required name='details' class="add-note-textarea" placeholder="your note details" style={{ fontWeight: 300 }}></textarea>
+                        <input spellCheck={false} required name='title' type="text" placeholder="Add Note Title" class="add-note-title" />
+                        <input spellCheck={false} name='category' type="text" placeholder="Category, for more category use comma" class="add-note-category" />
+                        <textarea  spellCheck={false} rows={30}  required name='details' class="add-note-textarea text-[16px]" placeholder="your note details" style={{ fontWeight: 300 }}></textarea>
                         <button type='submit' className='w-full block btn dark:bg-green-600 dark:hover:bg-green-800  mt-[20px]'>Add Note</button>
                     </form>
                 </div>
